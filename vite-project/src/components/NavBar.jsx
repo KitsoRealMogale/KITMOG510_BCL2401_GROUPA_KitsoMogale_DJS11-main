@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose,faBars} from '@fortawesome/free-solid-svg-icons';
-import { Header } from "./Header";
 
 export const NavBar = ()=> {
 
@@ -20,10 +19,12 @@ export const NavBar = ()=> {
 
 
     return(
-        <>
-        <Header/>
-        <FontAwesomeIcon style={{display:isNavOpen[1]}} onClick={navBarOpen} id='iconNavOpen' icon={faBars} />
-
+        <div id='ajustments'>
+        
+        <div id='navContainer'>
+        
+        <FontAwesomeIcon style={{display:isNavOpen[1],marginBottom:'10px'}} onClick={navBarOpen} id='iconNavOpen' icon={faBars} />
+        
         <div id='navBar' style={{display:isNavOpen[0]}}>
             <FontAwesomeIcon onClick={navBarClose} id='iconNavClose' icon={faClose} />
             <span className="spanNav">Home</span>
@@ -31,6 +32,7 @@ export const NavBar = ()=> {
             <span className="spanNav">Add Song</span>
             <span className="spanNav">Settings</span>
         </div>
-        </>
+        </div>
+        </div>
     )
 }
