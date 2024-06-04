@@ -14,6 +14,17 @@
  
 }
 
+img{
+  width: 25%;
+  height: 25%;
+}
+
+#login{
+  background-color: aliceblue;
+  position: fixed;
+  top:37vh;
+}
+
 #body{
   position: relative;
   top: 12vh;
