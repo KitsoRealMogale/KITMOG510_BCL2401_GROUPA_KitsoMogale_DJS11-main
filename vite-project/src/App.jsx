@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import axios from 'axios'
+import { Header } from './components/Header';
 
 function App() {
 
@@ -11,8 +11,8 @@ function App() {
 
   return (
     <>
-
-  
+      <Header/>
+     
 
     </>
   )
