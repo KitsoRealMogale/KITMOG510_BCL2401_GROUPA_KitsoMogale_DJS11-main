@@ -7,11 +7,9 @@ export const Header = ()=>{
 
             <h2>Home</h2>
             <h2>Favourites</h2>
-            <input type="text" placeholder="search"/>
+            <input type="text" placeholder="Search"/>
 
           </div>
-          
-        
         
         </>
      )

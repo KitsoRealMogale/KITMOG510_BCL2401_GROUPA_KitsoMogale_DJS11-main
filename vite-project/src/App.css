@@ -9,19 +9,30 @@
   font-size: 50%;
   border-bottom: 2px rgb(95, 94, 94) solid;
   background-color: rgb(9, 9, 9);
+  margin-bottom: 3%;
 }
 
-/* #search{
-  display: flex;
-  flex-direction: row;
-  justify-content:space-evenly;
-} */
 input{
   height: 5%;
   width: 20%;
   background-color: rgb(57, 56, 56);
   color:bisque;
   margin-left: 5px;
-  
+  position: relative;
+  top:5px;
+}
+
+img{
+  height:35%;
+  width:35%;
+}
+
+.preview_Title{
+  font-size: 60%;
+  color: grey;
+}
+
+.preview_div{
+  width: 70%;
 }
 
