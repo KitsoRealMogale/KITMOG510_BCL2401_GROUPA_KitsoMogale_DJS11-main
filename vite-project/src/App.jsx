@@ -10,7 +10,8 @@ function App() {
   const [childData,setChildData] = useState('');
 
   const dataFromChild = (dataChild) =>{
-    setChildData(dataChild)
+    setChildData(dataChild);
+    localStorage.setItem('path',dataChild)
   }
 
   return (
@@ -19,7 +20,7 @@ function App() {
        <Routes>
         <Route path='/' element= {<Layout/>}>
           <Route index element= {<Body postData={dataFromChild}/>}/>
-          <Route path={childData} element= {<Seasons/>}/>
+          <Route path={localStorage.getItem('path')} element= {<Seasons  id={localStorage.getItem('path')}/>}/>
         </Route>
         </Routes>
       </BrowserRouter>

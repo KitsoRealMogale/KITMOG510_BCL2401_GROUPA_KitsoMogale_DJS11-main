@@ -1,0 +1,77 @@
+.season-img{
+    width:65%;
+    height:65%;
+    position: relative;
+    top:8vh;
+}
+
+#modal1{
+    z-index: 1;
+    background-color: rgb(64, 81, 97);
+    color:black;
+    position: absolute;
+    top: 10vh;
+
+}
+
+#top1{
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#top1:hover{
+  background-color: rgb(57, 56, 56);
+  z-index: 1;
+}
+
+#btnom1{
+    position: relative;
+    top:9vh;
+    left:0vh;
+    background-color: aqua;
+    color: black;
+    font-weight: bold;
+    padding: auto;
+  }
+.preview-divs{
+    width: 70%;
+    background-color: rgb(154, 149, 149);
+    height: 70%;
+    font-size: smaller;
+    color: black;
+    position: relative;
+    top:3vh;
+    align-items: center;
+  }
+
+.grid-container2 {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+
+  }
+  
+  
+  /* Default grid layout for larger screens */
+  @media (min-width: 1024px) {
+    .grid-container2 {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  
+  /* Adjust grid for tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .grid-container2 {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+  
+  /* Ensure at least 2 columns on mobile devices */
+  @media (max-width: 767px) {
+    .grid-container2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+  }
