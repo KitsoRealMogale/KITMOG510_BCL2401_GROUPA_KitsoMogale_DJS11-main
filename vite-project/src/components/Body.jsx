@@ -1,7 +1,8 @@
 import { useEffect, useState }  from "react"
 import React from "react";
+import {Link} from 'react-router-dom'
 
-export const Body = () => {
+export const Body = ({postData}) => {
 
     const [data,setdata] = useState([]);
     
@@ -18,17 +19,41 @@ export const Body = () => {
   
         
     },[])
-    
+
+
+    if(data.length > 0){
+        data.sort(function(a, b){
+        if(a.title < b.title) { return -1; }
+        if(a.title > b.title) { return 1; }
+        return 0;
+    });
+
+
+}
+
+const clickHandler = (dataToPost)=>{
+
+    postData(dataToPost)
+
+}
     return(
         <>
+        
         {data.length > 0 &&
-          <div className='preview_div'>
-            <img src={`${data[0].image}`} />
-            <p className='preview_Title'>Title: {data[0].title}</p>
-            <p className='preview_Title'>Seasons: {data[0].seasons}</p>
-            <p className='preview_Title'>Genre Titles: {data[0].genres[0]}</p>
-          </div>
-}
+      <div className="grid-container"> 
+       { data.map(show=>
+          <div className='preview_div' key={show.id}>
+            <img src={`${show.image}`} />
+            <div className="info">
+              <p className='preview_Info'>Title: {show.title}</p>
+              <p className='preview_Info'>Seasons: {show.seasons}</p>
+              <Link to={show.id} onClick={()=>{clickHandler(show.id)}}>open</Link>
+            </div>
+          </div>)
+       }
+      </div>
+     }        
         </>
     )
 }
+

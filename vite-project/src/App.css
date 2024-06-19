@@ -10,6 +10,10 @@
   border-bottom: 2px rgb(95, 94, 94) solid;
   background-color: rgb(9, 9, 9);
   margin-bottom: 3%;
+  z-index: 1;
+  position: fixed;
+  top:0;
+  width:100%;
 }
 
 input{
@@ -23,16 +27,57 @@ input{
 }
 
 img{
-  height:35%;
-  width:35%;
+  height:48%;
+  width:78%;
 }
 
-.preview_Title{
+.preview_Info{
   font-size: 60%;
   color: grey;
+  position: relative;
+  left:0;
+  font-weight: bold;
 }
 
 .preview_div{
   width: 70%;
+}
+
+
+
+/* .info{
+  display: flex;
+  flex-direction: column;
+
+} */
+
+.grid-container {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  top:7vh;
+}
+
+
+/* Default grid layout for larger screens */
+@media (min-width: 1024px) {
+  .grid-container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+/* Adjust grid for tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-container {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* Ensure at least 2 columns on mobile devices */
+@media (max-width: 767px) {
+  .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
 }
 
