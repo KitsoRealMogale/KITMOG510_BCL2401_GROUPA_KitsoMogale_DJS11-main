@@ -36,6 +36,25 @@
     font-weight: bold;
     padding: auto;
   }
+
+  #episodes{
+    z-index: 1;
+    background-color: rgb(57, 56, 56);
+  }
+
+  .episode{
+    border: 1px white solid;
+    padding:3px;
+  }
+
+  #audioDiv{
+    position: relative;
+    bottom:0;
+    margin-top: 3%;
+
+  }
+
+
 .preview-divs{
     width: 70%;
     background-color: rgb(154, 149, 149);
