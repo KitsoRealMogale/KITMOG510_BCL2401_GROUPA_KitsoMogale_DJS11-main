@@ -1,15 +1,17 @@
 import { useEffect,useState } from "react"
-import './Component.css'
+import './Component.css';
 
 
-export const Seasons = ({id}) =>{
+export const Seasons = ({id,func,css}) =>{
 
     const [show,setShow] = useState({});
     const [open,setOpen] = useState(false);
     const [openEp,setOpenEp] = useState(false);
     const [ episodes,setEpisodes] = useState();
     const [openAudio,setopenAudio] = useState(false);
-    const [audioJSX,setAudioJSX] = useState();
+    const [audioSRC,setAudioSRC] = useState();
+    const [seasonRef,setSeasonRef] = useState();
+
 
     useEffect(()=>{
         
@@ -20,6 +22,28 @@ export const Seasons = ({id}) =>{
             setShow(data)})
             .catch(err=>console.log(err))
     },[]);
+
+
+    useEffect(()=>{
+      
+      const div = document.getElementById('seasonName');
+      div.style.top = css;
+      console.log(css)
+      
+ },[css]);
+
+    if(show.seasons){ 
+    localStorage.setItem('url',show.seasons[0].image);
+    localStorage.setItem('seasonRef',seasonRef)
+    localStorage.setItem('audioSRC',audioSRC) }
+    
+
+    if(openAudio){
+      localStorage.setItem('displayAudio',openAudio);
+    }
+
+   
+   
 
     const openModel = ()=>{
 
@@ -33,21 +57,15 @@ export const Seasons = ({id}) =>{
 
    };
 
-   const play = (url,id)=>{
-    console.log('ok');
-
-    let copy = <div id={id} className='audioDiv'>
-                   <audio id='audio' src={url} controls/>
-                </div> 
-
-    setAudioJSX(copy);
+   const play = (url)=>{
+   let copy = url;
+    setAudioSRC(copy);
     setopenAudio(true);
     
    }
 
    const openEpisodes= (id)=>{
     
-    console.log('ghvchsc bjsc j')
     let theOne;
     theOne = show.seasons.filter(item=>{
       
@@ -59,7 +77,7 @@ export const Seasons = ({id}) =>{
                   {theOne[0].episodes.map(epi=>{
                   return(  <div key={epi.episode} className='episode'>
                       <p> {epi.title}</p> 
-                      <button onClick={()=>{play(epi.file,epi.title)}} >play</button>
+                      <button onClick={()=>{setSeasonRef(epi.title);play(epi.file);func(epi.title)}} >play</button>
                     </div>)
                   })}
 
@@ -72,7 +90,7 @@ export const Seasons = ({id}) =>{
    }
     
     return(
-        <>
+        <div id="seasonName">
         {  
 
         show.seasons ?
@@ -95,10 +113,6 @@ export const Seasons = ({id}) =>{
                     openEp? episodes : null
                    }
 
-                {
-                    openAudio? audioJSX : null
-                }
-
           <div className="grid-container2">
          {
             show.seasons.map(season =>{
@@ -119,6 +133,6 @@ export const Seasons = ({id}) =>{
           :
           <h1>Loading....</h1>
         }
-        </>
+        </div>
     )
 }

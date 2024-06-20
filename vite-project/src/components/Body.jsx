@@ -2,7 +2,7 @@ import { useEffect, useState }  from "react"
 import React from "react";
 import {Link} from 'react-router-dom'
 
-export const Body = ({postData}) => {
+export const Body = ({postData,css}) => {
 
     const [data,setdata] = useState([]);
     
@@ -20,6 +20,10 @@ export const Body = ({postData}) => {
         
     },[])
 
+    useEffect(()=>{
+         const div = document.getElementById('grid-container');
+         div.style.top = css;
+    },[css])
 
     if(data.length > 0){
         data.sort(function(a, b){
@@ -37,10 +41,10 @@ const clickHandler = (dataToPost)=>{
 
 }
     return(
-        <>
+        <div id="grid-container">
         
         {data.length > 0 &&
-      <div className="grid-container"> 
+      <> 
        { data.map(show=>
           <div className='preview_div' key={show.id}>
             <img src={`${show.image}`} />
@@ -51,9 +55,9 @@ const clickHandler = (dataToPost)=>{
             </div>
           </div>)
        }
-      </div>
+      </>
      }        
-        </>
+        </div>
     )
 }
 
