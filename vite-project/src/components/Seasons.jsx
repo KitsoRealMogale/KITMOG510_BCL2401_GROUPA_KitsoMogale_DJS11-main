@@ -11,7 +11,10 @@ export const Seasons = ({id,func,css}) =>{
     const [openAudio,setopenAudio] = useState(false);
     const [audioSRC,setAudioSRC] = useState();
     const [seasonRef,setSeasonRef] = useState();
+    const [seasonNum,setSeasonNum] = useState();
+    const [showNum,setShowNum] = useState();
 
+    
 
     useEffect(()=>{
         
@@ -34,8 +37,11 @@ export const Seasons = ({id,func,css}) =>{
 
     if(show.seasons){ 
     localStorage.setItem('url',show.seasons[0].image);
-    localStorage.setItem('seasonRef',seasonRef)
-    localStorage.setItem('audioSRC',audioSRC) }
+    localStorage.setItem('seasonRef',seasonRef);
+    localStorage.setItem('audioSRC',audioSRC);
+    localStorage.setItem('seasonNum',seasonNum);
+    localStorage.setItem('showNum',showNum);
+  }
     
 
     if(openAudio){
@@ -77,7 +83,7 @@ export const Seasons = ({id,func,css}) =>{
                   {theOne[0].episodes.map(epi=>{
                   return(  <div key={epi.episode} className='episode'>
                       <p> {epi.title}</p> 
-                      <button onClick={()=>{setSeasonRef(epi.title);play(epi.file);func(epi.title)}} >play</button>
+                      <button onClick={()=>{setShowNum(show.title);setSeasonNum(theOne[0].title);setSeasonRef(epi.title);play(epi.file);func(epi.title)}} >play</button>
                     </div>)
                   })}
 

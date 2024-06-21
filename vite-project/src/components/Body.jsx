@@ -7,6 +7,8 @@ export const Body = ({postData,css,value,genre}) => {
     const [data,setdata] = useState([]);
     const [sort,setSort] = useState();
     const [search,setSearch] = useSearchParams()
+
+    let showTitles = [];
     
     useEffect( ()=>{
 
@@ -75,8 +77,10 @@ const clickHandler = (dataToPost)=>{
       <> 
        { data.map(show=>
        {   
-        //   console.log(show.genres.includes(1))
-          console.log(show.genres.includes(Number(search.get('gen'))))
+        showTitles.push(show);
+        
+        
+          
        if(show.genres.includes(Number(search.get('gen'))) || search.get('gen')== '0'){
       return( <div className='preview_div' key={show.id}>
         <img src={`${show.image}`} />
@@ -87,12 +91,18 @@ const clickHandler = (dataToPost)=>{
         </div>
       </div>)
        }
+       
     }
    )
+
        }
+
+       {console.log(showTitles)}
+       {showTitles.length >= 51 && localStorage.setItem('shows',JSON.stringify(showTitles))}
       </>
      }        
         </div>
+        
     )
 }
 

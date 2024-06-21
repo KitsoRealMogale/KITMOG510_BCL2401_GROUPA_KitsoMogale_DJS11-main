@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { Favourites } from "./Favourites";
 
 
 export const Audio = (props)=>{
 
     const [close,setClose] = useState(true);
-    const [favouriteEp,setFavouriteEp] = useEffect([]);
+    const [favouriteEp,setFavouriteEp] = useState([]);
        
     const closeAudio=()=>{
          setClose(false);
@@ -13,13 +14,17 @@ export const Audio = (props)=>{
     }
 
     useEffect(()=>{
-        localStorage.setItem('favourites',favouriteEp)
+        
+            localStorage.setItem('favourites',localStorage.getItem('favourites'));
+        
     },[favouriteEp])
 
-    const favourite = ()=>{
-
-         let copy = [...favouriteEp]
-         copy.push()
+    const favourite = (obj)=>{
+        
+         let copy = JSON.parse(localStorage.getItem('favourites'));
+         copy.push(obj);
+         setFavouriteEp(copy);
+         localStorage.setItem('favourites',JSON.stringify(copy));
     }
     
     useEffect(()=>{
@@ -36,11 +41,11 @@ export const Audio = (props)=>{
                           <div id='audiopic'>
                           <img className="audioimage" src={props.url}/>
                           <p>{props.seasonRef}</p>
-                          <button onClick={favourite}>fav</button>
+                          <button onClick={()=>{props.favourites(props.seasonRef);favourite({'title':props.seasonRef,'seasonNum':props.seasonNum, 'showNum':props.showNum, 'url':props.url})}}>fav</button>
                           </div>
                             <audio src={props.audioSRC} controls/>
 
-                               <button onClick={()=>closeAudio(props.seasonRef,)}>close</button>
+                               <button onClick={()=>closeAudio(props.seasonRef)}>close</button>
                         </div>: null
                    }
         </>

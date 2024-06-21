@@ -43,6 +43,37 @@ img{
   width: 70%;
 }
 
+.imgFav{
+  width:8vh;
+}
+
+#Favourites{
+  position: relative;
+  top:8vh;
+}
+
+.headFav{
+  display: flex;
+  flex-direction: row;
+}
+
+.pFav{
+  font-size: 1.5vh;
+}
+
+.containFav{
+  border: 1px white solid;
+  margin: 1vh;
+}
+
+h5{
+  margin:2vh;
+}
+
+.favouriteEPISODE{
+  border:1px white solid;
+}
+
 #grid-container {
   display: grid;
   gap: 10px;

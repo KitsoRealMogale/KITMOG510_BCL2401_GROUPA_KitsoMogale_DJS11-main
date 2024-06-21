@@ -13,6 +13,7 @@ function App() {
   const [css,setCss] = useState();
   const [selValue,setSelValue] = useState();
   const [selectG,setSelectG] = useState();
+  const [favouriteAudio,setFavouriteAudio] = useState()
 
   const dataFromChild = (dataChild) =>{
     setChildData(dataChild);
@@ -38,14 +39,18 @@ function App() {
         setSelectG(val)
   }
 
+  const favourites = val => {
+      setFavouriteAudio(val)
+  }
+
   return (
     <>
      <BrowserRouter>
        <Routes>
-        <Route path='/' element= {<Layout selectGenre={selectGenre} select={selected} vh={vh} trigger={trigger}/>}>
+        <Route path='/' element= {<Layout favourites={favourites} selectGenre={selectGenre} select={selected} vh={vh} trigger={trigger}/>}>
           <Route index element= {<Body genre={selectG} value={selValue} css={css} postData={dataFromChild}/>}/>
           <Route path={localStorage.getItem('path')} element= {<Seasons css={css} func={func}  id={localStorage.getItem('path')}/>}/>
-          <Route path='/Favourites' element={<Favourites/>}/>
+          <Route path='/Favourites' element={<Favourites favouriteAudio={favouriteAudio} />}/>
         </Route>
         </Routes>
       </BrowserRouter>
