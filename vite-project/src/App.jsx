@@ -4,6 +4,7 @@ import { Body } from './components/Body';
 import { Link,BrowserRouter,Routes,Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Seasons } from './components/Seasons';
+import { Favourites } from './components/Favourites';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   const [trigger,setTrigger] = useState();
   const [css,setCss] = useState();
   const [selValue,setSelValue] = useState();
+  const [selectG,setSelectG] = useState();
 
   const dataFromChild = (dataChild) =>{
     setChildData(dataChild);
@@ -32,13 +34,18 @@ function App() {
        
   }
 
+  const selectGenre = (val)=>{
+        setSelectG(val)
+  }
+
   return (
     <>
      <BrowserRouter>
        <Routes>
-        <Route path='/' element= {<Layout select={selected} vh={vh} trigger={trigger}/>}>
-          <Route index element= {<Body value={selValue} css={css} postData={dataFromChild}/>}/>
+        <Route path='/' element= {<Layout selectGenre={selectGenre} select={selected} vh={vh} trigger={trigger}/>}>
+          <Route index element= {<Body genre={selectG} value={selValue} css={css} postData={dataFromChild}/>}/>
           <Route path={localStorage.getItem('path')} element= {<Seasons css={css} func={func}  id={localStorage.getItem('path')}/>}/>
+          <Route path='/Favourites' element={<Favourites/>}/>
         </Route>
         </Routes>
       </BrowserRouter>

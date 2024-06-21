@@ -1,11 +1,12 @@
 import { useEffect, useState }  from "react"
 import React from "react";
-import {Link} from 'react-router-dom'
+import {Link, useSearchParams} from 'react-router-dom'
 
-export const Body = ({postData,css,value}) => {
+export const Body = ({postData,css,value,genre}) => {
 
     const [data,setdata] = useState([]);
-    const [sort,setSort] = useState()
+    const [sort,setSort] = useState();
+    const [search,setSearch] = useSearchParams()
     
     useEffect( ()=>{
 
@@ -53,6 +54,13 @@ export const Body = ({postData,css,value}) => {
 
 }
 
+useEffect(() => {
+  setSearch({gen:genre || 0});
+  
+  
+}, [genre]);
+
+
 
 
 const clickHandler = (dataToPost)=>{
@@ -66,14 +74,21 @@ const clickHandler = (dataToPost)=>{
         {data.length > 0 &&
       <> 
        { data.map(show=>
-          <div className='preview_div' key={show.id}>
-            <img src={`${show.image}`} />
-            <div className="info">
-              <p className='preview_Info'>Title: {show.title}</p>
-              <p className='preview_Info'>Seasons: {show.seasons}</p>
-              <Link to={show.id} onClick={()=>{clickHandler(show.id)}}>open</Link>
-            </div>
-          </div>)
+       {   
+        //   console.log(show.genres.includes(1))
+          console.log(show.genres.includes(Number(search.get('gen'))))
+       if(show.genres.includes(Number(search.get('gen'))) || search.get('gen')== '0'){
+      return( <div className='preview_div' key={show.id}>
+        <img src={`${show.image}`} />
+        <div className="info">
+          <p className='preview_Info'>Title: {show.title}</p>
+          <p className='preview_Info'>Seasons: {show.seasons}</p>
+          <Link to={show.id} onClick={()=>{clickHandler(show.id)}}>open</Link>
+        </div>
+      </div>)
+       }
+    }
+   )
        }
       </>
      }        

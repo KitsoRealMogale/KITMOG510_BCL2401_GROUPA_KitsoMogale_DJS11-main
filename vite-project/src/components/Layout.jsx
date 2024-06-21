@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import { Header } from "./Header"
 import { Audio } from "./Audio"
 
-export default function Layout({trigger,vh,select}) {
+export default function Layout({trigger,vh,select,selectGenre}) {
 
 
     const [localStore,setStore] = useState();
@@ -18,7 +18,7 @@ export default function Layout({trigger,vh,select}) {
 
     return (
         <div className="site-wrapper">
-            <Header select={select} />
+            <Header select={select} selectGenre={selectGenre} />
             { JSON.parse(localStorage.getItem('displayAudio')) && 
                  
                  <Audio vh={vh} trg={JSON.parse(localStorage.getItem('displayAudio'))} url={localStorage.getItem('url')} seasonRef={localStorage.getItem('seasonRef')} audioSRC={localStorage.getItem('audioSRC')}/>
