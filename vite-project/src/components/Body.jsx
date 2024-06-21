@@ -2,9 +2,10 @@ import { useEffect, useState }  from "react"
 import React from "react";
 import {Link} from 'react-router-dom'
 
-export const Body = ({postData,css}) => {
+export const Body = ({postData,css,value}) => {
 
     const [data,setdata] = useState([]);
+    const [sort,setSort] = useState()
     
     useEffect( ()=>{
 
@@ -23,17 +24,36 @@ export const Body = ({postData,css}) => {
     useEffect(()=>{
          const div = document.getElementById('grid-container');
          div.style.top = css;
-    },[css])
+    },[css]);
+
+
+    useEffect(()=>{
+        setSort(value);
+    },[value]);
+
+
 
     if(data.length > 0){
+        if(sort == 'Option 1'){
         data.sort(function(a, b){
+        if(a.title < b.title) { return 1; }
+        if(a.title > b.title) { return -1; }
+        return 0;}
+        
+    );
+  }
+  else{
+    data.sort(function(a, b){
         if(a.title < b.title) { return -1; }
         if(a.title > b.title) { return 1; }
-        return 0;
-    });
-
+        return 0;}
+        
+    );
+  }
 
 }
+
+
 
 const clickHandler = (dataToPost)=>{
 

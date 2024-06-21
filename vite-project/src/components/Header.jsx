@@ -1,5 +1,17 @@
+import { SelectComponent } from "./Select"
+import { useState } from "react";
 
-export const Header = ()=>{
+
+export const Header = ({select})=>{
+
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleSelectChange = (value) => {
+    setSelectedValue(value);
+    console.log(value)
+    select(selectedValue);
+   
+  };
 
      return (
         <>
@@ -7,8 +19,7 @@ export const Header = ()=>{
 
             <h2>Home</h2>
             <h2>Favourites</h2>
-            <input type="text" placeholder="Search"/>
-
+            <SelectComponent onSelectChange={handleSelectChange}  option1={'A-Z'} option2={'Z-A'}/>
           </div>
         
         </>

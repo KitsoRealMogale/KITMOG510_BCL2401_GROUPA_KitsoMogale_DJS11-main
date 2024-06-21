@@ -9,7 +9,8 @@ function App() {
 
   const [childData,setChildData] = useState('');
   const [trigger,setTrigger] = useState();
-  const [css,setCss] = useState()
+  const [css,setCss] = useState();
+  const [selValue,setSelValue] = useState();
 
   const dataFromChild = (dataChild) =>{
     setChildData(dataChild);
@@ -26,12 +27,17 @@ function App() {
       setCss(obj)
   }
 
+  const selected = (val)=>{
+        setSelValue(val);
+       
+  }
+
   return (
     <>
      <BrowserRouter>
        <Routes>
-        <Route path='/' element= {<Layout vh={vh} trigger={trigger}/>}>
-          <Route index element= {<Body css={css} postData={dataFromChild}/>}/>
+        <Route path='/' element= {<Layout select={selected} vh={vh} trigger={trigger}/>}>
+          <Route index element= {<Body value={selValue} css={css} postData={dataFromChild}/>}/>
           <Route path={localStorage.getItem('path')} element= {<Seasons css={css} func={func}  id={localStorage.getItem('path')}/>}/>
         </Route>
         </Routes>
