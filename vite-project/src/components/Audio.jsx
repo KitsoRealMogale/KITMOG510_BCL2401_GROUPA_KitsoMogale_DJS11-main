@@ -10,7 +10,7 @@ export const Audio = (props)=>{
     const closeAudio=()=>{
          setClose(false);
          localStorage.setItem('displayAudio',false);
-          props.vh('6vh')
+          props.vh('10vh')
     }
 
     useEffect(()=>{

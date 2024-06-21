@@ -94,6 +94,15 @@ h5{
   #grid-container {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
+  .preview_Info{
+    font-size: 90%;
+    color: grey;
+    position: relative;
+    left:0;
+    font-weight: bold;
+  }
+  
+
 }
 
 /* Ensure at least 2 columns on mobile devices */

@@ -127,8 +127,6 @@ export const Seasons = ({id,func,css}) =>{
                  <div key={season.season} className="preview-divs" >
                   <h2>  Season {season.season}</h2>
                   <button onClick={()=>openEpisodes(season.season)}>open</button>
-
-                
                 </div>
              )
             })
